@@ -1,0 +1,60 @@
+<h1>{{title}}</h1>
+
+<h2>Compound sentiment score</h2>
+<canvas id="compound-chart" width="400" height="200"></canvas>
+
+<h2>Positive, neutral, and negative sentiment scores</h2>
+<canvas id="others-chart" width="400" height="200"></canvas>
+<script>
+  new Chart(document.getElementById('compound-chart'), {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: 'Sentiment',
+          data: [{{{ data.compound }}}].map((y, x) => ({ y, x }))
+        }
+      ]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'linear',
+          position: 'bottom'
+        }]
+      }
+    }
+  });
+  new Chart(document.getElementById('others-chart'), {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: 'Positive',
+          borderColor: 'rgba(20, 155, 30, 0.3)',
+          fill: false,
+          data: [{{{ data.pos }}}].map((y, x) => ({ y, x }))
+        },
+        {
+          label: 'Negative',
+          borderColor: 'rgba(155, 20, 30, 0.3)',
+          fill: false,
+          data: [{{{ data.neg }}}].map((y, x) => ({ y, x }))
+        },
+        {
+          label: 'Neutral',
+          fill: false,
+          data: [{{{ data.neu }}}].map((y, x) => ({ y, x }))
+        }
+      ]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'linear',
+          position: 'bottom'
+        }]
+      }
+    }
+  });
+</script>
