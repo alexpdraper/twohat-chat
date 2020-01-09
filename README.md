@@ -5,6 +5,10 @@ I have created a Node server with Express that reads the chat logs, runs them th
 To run:
 
 ~~~bash
+# Install modules
+npm install
+
+# Run the server
 DEBUG=twohat:* npm start
 ~~~
 
